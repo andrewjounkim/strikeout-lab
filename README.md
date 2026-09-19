@@ -32,8 +32,9 @@ source .venv/bin/activate            # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 streamlit run app.py
 ```
+Use link https://strikeout-lab.streamlit.app/ for easy access.
 
-Streamlit opens the app at <http://localhost:8501>. Leave that terminal open while
+Also, Streamlit opens the app at <http://localhost:8501>. Leave that terminal open while
 you use it, and press `Ctrl+C` to stop.
 
 **No API key, account, subscription, or payment is needed** (there is nothing to buy or sign
@@ -278,28 +279,7 @@ against the live API for all 11 selectable seasons (2016 to 2026) and used in a 
   SIL Open Font License (license files are in `static/fonts/`).
 - Built with Claude (Anthropic) as a coding partner; see [prompt_log.md](prompt_log.md).
 
-## Demo video outline (about 2-3 minutes)
-
-1. **Intro (20 s):** what Strikeout Lab is and its mission; say it's an educational model, not a betting system.
-   On the home page, point out the live numbers and try the **Try it** widget: pick a pitcher, then flip between the
-   strikeout-heavy and contact-heavy team and watch the forecast move.
-2. **The API (30 s):** say it's one API, the free MLB Stats API with no key (see "APIs used"); show `api.py`
-   and one real request in the browser or terminal (e.g. the `/teams/stats` URL from API_NOTES.md); point at
-   `strikeOuts` and `plateAppearances` in the JSON.
-3. **Today's games (30 s):** open the Today page; read the note on what it is and isn't; show the matchup
-   watch (bats that help vs. hurt), click a pitcher to see the actual lineup batter by batter, and point out
-   "Not posted yet" for a team whose lineup isn't out.
-4. **Browse (25 s):** on the Home page click a top pitcher, or open Browse, search a name,
-   sort by strikeout rate, and flip to the Teams tab to show who strikes out most.
-5. **Forecast Lab (45 s):** choose an opponent; explain the workload default (last five starts);
-   drag the slider and show the forecast and charts change; set a line such as 5.5 and read
-   over/under; switch to a league-average opponent to show the adjustment goes to zero.
-6. **How it works (25 s):** open "How this model works" under the results; walk through the three
-   rates, the matchup formula, and the pitcher-only baseline.
-7. **Try to break it (15 s):** type a non-half-integer line (5), pick a small-sample pitcher, and tick Offline demo mode.
-8. **Wrap-up (10 s):** limitations, and what you'd add next (lineups, backtesting).
-
-## Portfolio description (adapt as you like)
+## Portfolio description
 
 > **Strikeout Lab** is an interactive Python web app that helps people explore and model
 > MLB pitcher strikeouts. It pulls live team and pitcher statistics from the public MLB
@@ -309,5 +289,4 @@ against the live API for all 11 selectable seasons (2016 to 2026) and used in a 
 > "Today's Games" view pulls the live schedule and posted lineups to show which pitchers the opposing
 > batters could help or hurt.
 > Built with Streamlit, scipy, and Plotly, with caching, error handling, an offline demo
-> mode, and an automated test suite. It's an educational statistics project, not a betting
-> tool, and the app spells out its assumptions and limits. (Python - Streamlit - REST API - probability)
+> mode, and an automated test suite.
