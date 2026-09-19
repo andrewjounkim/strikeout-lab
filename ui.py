@@ -9,6 +9,8 @@ from html import escape
 
 import streamlit as st
 
+import api
+
 # A baseball: white ball outline with two curved, dashed "stitch" seams.
 BASEBALL_SVG = """<svg class="ball" viewBox="0 0 200 200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
   <circle cx="100" cy="100" r="94" fill="rgba(255,255,255,.07)" stroke="#fff" stroke-width="4"/>
@@ -187,9 +189,9 @@ def page_header(title, subtitle):
     )
 
 
-def local_time(iso):
-    """A UTC start time shown in the viewer's own time zone, like '7:05 PM'."""
+def game_time(iso):
+    """A UTC start time shown in MLB's own time zone (Eastern), like '7:05 PM'. Callers label it "ET"."""
     try:
-        return datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone().strftime("%I:%M %p").lstrip("0")
+        return datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(api.MLB_TZ).strftime("%I:%M %p").lstrip("0")
     except (AttributeError, ValueError):
         return ""

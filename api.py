@@ -27,12 +27,23 @@ We never fill in made-up statistics.
 import json
 from datetime import date, datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import requests
 
 BASE_URL = "https://statsapi.mlb.com/api/v1"
 TIMEOUT_SECONDS = 15
 SNAPSHOT_DIR = Path(__file__).parent / "data"   # holds offline_snapshot_<season>.json files
+
+
+# MLB's schedule day and game times are in Eastern Time. Using it (not the server's clock) keeps "today" correct
+# and game times meaningful no matter where the app runs; a hosted server usually runs in UTC.
+MLB_TZ = ZoneInfo("America/New_York")
+
+
+def mlb_today(now=None):
+    """Today's date in MLB's time zone. `now` (a timezone-aware datetime) is only for testing."""
+    return (now or datetime.now(timezone.utc)).astimezone(MLB_TZ).date()
 
 
 class ApiError(Exception):
@@ -114,7 +125,7 @@ def parse_seasons(payload, today):
 
 
 def fetch_seasons(today=None):
-    today = today or date.today().isoformat()
+    today = today or mlb_today().isoformat()
     payload, url = _get_json("/seasons/all", {"sportId": 1})
     result = parse_seasons(payload, today)
     result.update(fetched_at=_now_utc(), source=url)

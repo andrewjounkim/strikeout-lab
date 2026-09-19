@@ -389,6 +389,20 @@ also tell me what apis were used just so i can explain the project better in vid
    a note that Python libraries such as `requests` and `streamlit` are tools and not APIs, and that Google Fonts was used
    once at design time to download the fonts and is never called by the running app.
 
+### Prompt 9: a public link (asked as a question)
+
+```text
+is it possible to make a public link to it instead of having in the readme and localhost link
+```
+
+**What the assistant did in response:** explained that yes, the free route is Streamlit Community Cloud, which needs
+the owner to sign in with GitHub (something the assistant cannot do for them). It then prepared the app for a public
+server. Thinking about hosting turned up a real bug: a hosted server runs in UTC, so "today's games" would roll over to
+tomorrow at about 8 PM Eastern and game times would be shown in UTC without a label. The app now uses Eastern Time
+(MLB's own time zone) everywhere and labels times "ET", verified by a test that changes the machine's time zone and
+checks the answers don't move. It also rehearsed the deployment: a clean environment built from `requirements.txt`
+alone passed all 162 tests, and the app ran correctly with the server clock forced to UTC.
+
 ## What I did not do
 
 - No backtest was built. The prompt made it optional, and nothing in the app or docs

@@ -3,7 +3,6 @@
 (nothing decorative is made up), and each section leads somewhere.
 """
 
-from datetime import date
 from html import escape
 
 import streamlit as st
@@ -143,7 +142,7 @@ def _today_teaser(ctx, pages):
     """A live glimpse of today's slate. It needs only the (fast, cached) schedule, and quietly
     disappears if there is no slate or it can't be loaded, since it is a teaser, not a feature."""
     try:
-        schedule = ctx.slate(date.today().isoformat())
+        schedule = ctx.slate(api.mlb_today().isoformat())
     except api.ApiError:
         return
     if not schedule or not schedule["games"]:
@@ -157,7 +156,7 @@ def _today_teaser(ctx, pages):
     rows = "".join(
         f'<div class="game-row"><span class="teams">{escape(g["away"]["team_name"])} @ {escape(g["home"]["team_name"])}</span>'
         f'<span class="meta">{escape(g["away"]["pitcher_name"] or "TBD")} vs. {escape(g["home"]["pitcher_name"] or "TBD")}'
-        f' · {escape(ui.local_time(g["start"]))}</span></div>'
+        f' · {escape(ui.game_time(g["start"]))} ET</span></div>'
         for g in shown
     )
     label = f"Saved slate · {schedule['date']}" if ctx.offline else "On the slate today"

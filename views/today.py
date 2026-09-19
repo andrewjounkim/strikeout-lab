@@ -6,7 +6,6 @@ own season average. It is a forecast comparison, not betting advice: the model h
 lines and has never been validated, so it can't say what is a "good bet".
 """
 
-from datetime import date
 from html import escape
 
 import pandas as pd
@@ -86,7 +85,7 @@ def _controls(ctx):
             return None, state.DEFAULT_LINE, False
         day = saved
     else:
-        day = c1.date_input("Date", value=date.today(), key="today_date", help="Probable pitchers are usually posted a day or two ahead.").isoformat()
+        day = c1.date_input("Date", value=api.mlb_today(), key="today_date", help="Probable pitchers are usually posted a day or two ahead.").isoformat()
     line = c2.number_input("Strikeout line", min_value=0.5, max_value=15.5, value=state.DEFAULT_LINE, step=1.0,
                            format="%.1f", key="today_line", help="Hypothetical. Half-integers only, so there are no ties.")
     include_started = c3.checkbox("Include games already started or finished", value=False, key="today_all",
@@ -160,7 +159,7 @@ def _all_pitchers(ctx, pages, visible, line, include_started):
     over_col = f"P(over {line:.1f})"
 
     frame = pd.DataFrame({
-        "Time": [ui.local_time(r["start"]) for r in ordered],
+        "Time (ET)": [ui.game_time(r["start"]) for r in ordered],
         "Pitcher": [r["pitcher"] for r in ordered],
         "Team": [r["team"] for r in ordered],
         "vs": [r["opponent"] for r in ordered],

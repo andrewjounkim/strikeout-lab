@@ -40,6 +40,19 @@ you use it, and press `Ctrl+C` to stop.
 up for anywhere in the app). If you have no internet, tick **Offline demo mode** in the
 sidebar (see [Offline mode](#offline-mode)). Run the tests with `python -m pytest`.
 
+## Deploying a public link
+
+The app can be hosted for free on [Streamlit Community Cloud](https://share.streamlit.io), which gives it a
+permanent `https://<name>.streamlit.app` address:
+
+1. Sign in with GitHub, then choose **Create app**, then **Deploy a public app from GitHub**.
+2. Repository `andrewjounkim/strikeout-lab`, branch `main`, main file `app.py`. Under *Advanced settings*, pick the
+   newest Python version, and optionally a custom address such as `strikeout-lab`.
+3. Deploy. Every push to `main` redeploys it, and it needs no secrets. Free apps go to sleep after a period of
+   inactivity and wake with a click, so open the link once before showing it to anyone.
+
+The app uses Eastern Time for MLB's day and game times (labeled "ET"), so it looks the same wherever it runs.
+
 ## Using the app
 
 The navigation bar has five pages (on a phone, tap the `>>` arrow at the top left):

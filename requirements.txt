@@ -3,5 +3,7 @@ streamlit>=1.64
 requests>=2.31
 scipy>=1.11
 plotly>=5.20
-# Only needed to run the tests (pytest):
+# Time zone data, used to show MLB game times in Eastern Time (some systems do not ship it).
+tzdata
+# Only needed to run the tests:
 pytest>=8
