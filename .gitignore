@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Virtual environment (recreate it with the commands in README.md)
+.venv/
+
+# Local scratch files (raw API dumps used while exploring)
+scratch/
+
+# Secrets. This project uses a keyless API, so there are none today, but if a keyed API is ever added:
+# keep the key in an environment variable or one of these files, which git will never track.
+.env
+.env.*
+config.local
+*.local
+secrets.toml
+.streamlit/secrets.toml
+
+# Logs
+*.log
+
+# macOS
+.DS_Store

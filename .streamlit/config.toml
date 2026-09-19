@@ -1,0 +1,63 @@
+# Look and feel of the app. Nothing secret in this file, so it is safe to commit.
+
+[server]
+# Lets the app serve the font files in static/fonts/ (so it needs no Google Fonts request and works offline).
+enableStaticServing = true
+
+[theme]
+base = "light"
+primaryColor = "#e8590c"
+backgroundColor = "#f6f8fc"
+secondaryBackgroundColor = "#eaf0fa"
+textColor = "#14213d"
+borderColor = "#dbe3f1"
+linkColor = "#1f4e8c"
+showWidgetBorder = true
+baseRadius = "14px"
+buttonRadius = "full"
+
+font = "Inter, sans-serif"
+baseFontWeight = 400
+headingFont = "Barlow Condensed, sans-serif"
+headingFontSizes = ["3.4rem", "2.5rem", "2rem", "1.55rem", "1.25rem", "1.1rem"]
+headingFontWeights = [800, 700, 700, 700, 600, 600]
+metricValueFontSize = "2.4rem"
+metricValueFontWeight = 700
+
+[[theme.fontFaces]]
+family = "Inter"
+url = "app/static/fonts/Inter-400-800.woff2"
+weight = "400 800"
+style = "normal"
+
+[[theme.fontFaces]]
+family = "Barlow Condensed"
+url = "app/static/fonts/BarlowCondensed-600.woff2"
+weight = "600"
+style = "normal"
+
+[[theme.fontFaces]]
+family = "Barlow Condensed"
+url = "app/static/fonts/BarlowCondensed-700.woff2"
+weight = "700"
+style = "normal"
+
+[[theme.fontFaces]]
+family = "Barlow Condensed"
+url = "app/static/fonts/BarlowCondensed-800.woff2"
+weight = "800"
+style = "normal"
+
+[theme.sidebar]
+backgroundColor = "#0f2a4a"
+secondaryBackgroundColor = "#1b3d6b"
+textColor = "#eef3fb"
+primaryColor = "#ff8a3d"
+borderColor = "#2a4a78"
+
+[client]
+# "minimal" hides Streamlit's Deploy button and developer menu.
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false

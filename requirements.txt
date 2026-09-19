@@ -1,0 +1,7 @@
+# Versions below are the ones this project was built and tested with; newer versions should work too.
+streamlit>=1.64
+requests>=2.31
+scipy>=1.11
+plotly>=5.20
+# Only needed to run the tests (pytest):
+pytest>=8
