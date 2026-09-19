@@ -247,7 +247,7 @@ model.py           The probability math. No network, no Streamlit.
 api.py             MLB Stats API requests and parsing, with clear error messages
 make_snapshot.py   Builds the offline snapshot from the live API
 data/              Offline snapshots for 2025 and 2026 (real API data, with sources and times)
-tests/             151 tests; tests/fixtures/ holds trimmed real API responses
+tests/             162 tests; tests/fixtures/ holds trimmed real API responses
 .streamlit/        Theme (fonts, colors, sidebar) and settings that hide Streamlit's Deploy button
 API_NOTES.md       Endpoints, parameters, fields, and what was verified
 prompt_log.md      AI tools used and the prompts that shaped the project
@@ -255,7 +255,7 @@ prompt_log.md      AI tools used and the prompts that shaped the project
 
 ## Testing
 
-`python -m pytest` runs 151 tests. They need no internet (the suite was also run with every
+`python -m pytest` runs 162 tests. They need no internet (the suite was also run with every
 outbound network connection blocked, and passes). They cover the model math
 (probabilities sum to 1, half-integer over/under, a league-average opponent leaving the
 pitcher's rate unchanged, missing and zero-denominator inputs), the API parsing against
@@ -264,10 +264,10 @@ filtered out, empty/bad responses become clear errors), and the pages themselves
 Streamlit's headless test runner (the Lab starts empty with no preselected pitcher, results
 wait for an opponent, the slider, invalid lines, small-sample and clamp notices, the manual
 workload label, offline mode, and unreachable-API behavior).
-To check the tests can actually fail, I broke the code on purpose twenty-five different ways
+To check the tests can actually fail, I broke the code on purpose twenty-seven different ways
 (for example: an off-by-one over/under threshold, averaged percentages, an inverted matchup
 ratio, a Lab that preselects a pitcher, an app that opens on the wrong season, a Today page that ignores
-posted lineups, one that ranks games already underway, a planted API key, a missing font file, and a second API host) and each one was caught. The app was also run
+posted lineups, one that ranks games already underway, a planted API key, a missing font file, a second API host, and a clock that ignores Eastern Time) and each one was caught. The app was also run
 against the live API for all 11 selectable seasons (2016 to 2026) and used in a real Chrome browser
 (desktop and phone width).
 

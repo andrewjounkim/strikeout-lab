@@ -13,6 +13,31 @@
 
 No other AI tools or models were used for this project.
 
+## Short version
+
+**Tools:** Claude Code running Claude Sonnet 5 (in VS Code) wrote and tested the code; Python, Streamlit, requests,
+scipy, Plotly, and pytest are what the app is built with. **I directed the design and decisions; the AI implemented,
+tested, and explained.** Every claim was checked against real API responses and automated tests, not taken on trust.
+
+**The key prompts, in the order they shaped the project:**
+
+1. **The initial spec** (below, verbatim): build "Strikeout Lab," verify the MLB Stats API with real requests *before*
+   coding, use a transparent binomial model, never present it as validated or as betting advice, and write tests.
+2. **"make the ui a lot better ... a homepage where i can browse and theres a clear mission statement"**: turned one
+   page into a multi-page app (Home, Browse, Forecast Lab, How it works) that starts empty, with no preselected pitcher.
+3. **"i need it for 2026"**: the app now opens on the current season, with 2026 clearly labeled as in progress.
+4. **"set a section for games that are going on today ... and possible over/underperformances based on batters"**: a
+   Today's Games page using each team's posted lineup. The AI explained why it could not honestly rank "best bets"
+   (no sportsbook lines, model never validated) and built a "which bats help or hurt" view instead.
+5. **"make the design a bit better ... a pretty interactive homepage"**: custom fonts, background, and an interactive
+   homepage built only from real MLB data.
+6. **"keep API keys and other secrets out of the repo" and "tell me what apis were used"**: a repo-wide secrets audit,
+   a stricter `.gitignore`, tests that fail if a credential appears, and an "APIs used" section (one API, no key).
+7. **A public link**: while preparing for hosting, the AI found that a UTC server would show the wrong "today" and
+   game times, so the app now uses Eastern Time (MLB's own), with a test that changes the machine's time zone.
+
+The full prompts, what the AI did, and the bugs it caught along the way are below.
+
 ## Context before this prompt
 
 Earlier in the same session I pasted the assignment brief, then said I was thinking
